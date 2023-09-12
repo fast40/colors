@@ -4,6 +4,10 @@ import numpy as np
 def get_decision(choices, target):
 	decision = choices.clone()
 
+	# print('--------------')
+	# print(choices.shape)
+	# print(target.shape)
+
 	distance1 = ((decision[:, :3] - target) ** 2).sum(dim=1)
 	distance2 = ((decision[:, 3:] - target) ** 2).sum(dim=1)
 

@@ -2,7 +2,6 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 
-DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 ITERATIONS = 24
 
 
@@ -13,7 +12,9 @@ class TargetModel(nn.Module):
         self.main = nn.Sequential(
             nn.Linear(ITERATIONS * 6, 128),
             nn.ReLU(),
-            nn.Linear(128, 64),
+            nn.Linear(128, 256),
+            nn.ReLU(),
+            nn.Linear(256, 64),
             nn.ReLU(),
             nn.Linear(64, 3)
         )
@@ -31,7 +32,9 @@ class ChoiceModel(nn.Module):
         self.main = nn.Sequential(
             nn.Linear(ITERATIONS * 6, 128),
             nn.ReLU(),
-            nn.Linear(128, 64),
+            nn.Linear(128, 256),
+            nn.ReLU(),
+            nn.Linear(256, 64),
             nn.ReLU(),
             nn.Linear(64, 6)
         )
